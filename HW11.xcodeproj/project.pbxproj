@@ -11,6 +11,7 @@
 		BE58C9AC28ACD64400875B37 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58C9AB28ACD64400875B37 /* SceneDelegate.swift */; };
 		BE58C9AE28ACD64400875B37 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58C9AD28ACD64400875B37 /* AuthViewController.swift */; };
 		BE58C9B328ACD64C00875B37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE58C9B228ACD64C00875B37 /* Assets.xcassets */; };
+		BE58C9BE28ACDC7400875B37 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58C9BD28ACDC7400875B37 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		BE58C9AD28ACD64400875B37 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		BE58C9B228ACD64C00875B37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE58C9B728ACD64C00875B37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE58C9BD28ACDC7400875B37 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 				BE58C9A928ACD64400875B37 /* AppDelegate.swift */,
 				BE58C9AB28ACD64400875B37 /* SceneDelegate.swift */,
 				BE58C9AD28ACD64400875B37 /* AuthViewController.swift */,
+				BE58C9BD28ACDC7400875B37 /* Extensions.swift */,
 				BE58C9B228ACD64C00875B37 /* Assets.xcassets */,
 				BE58C9B728ACD64C00875B37 /* Info.plist */,
 			);
@@ -133,6 +136,7 @@
 				BE58C9AE28ACD64400875B37 /* AuthViewController.swift in Sources */,
 				BE58C9AA28ACD64400875B37 /* AppDelegate.swift in Sources */,
 				BE58C9AC28ACD64400875B37 /* SceneDelegate.swift in Sources */,
+				BE58C9BE28ACDC7400875B37 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
