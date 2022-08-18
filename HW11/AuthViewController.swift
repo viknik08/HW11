@@ -8,6 +8,8 @@
 import UIKit
 
 class AuthViewController: UIViewController {
+
+//MARK: - Outlets
     
     private let loginLabel: UILabel = {
         let label = UILabel()
@@ -19,8 +21,10 @@ class AuthViewController: UIViewController {
     private let loginTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter you login"
-        textField.borderStyle = .roundedRect
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 30
         textField.setLeftIcon(UIImage.init(systemName: "person.fill")!)
+        textField.setRightIcon(UIImage.init(systemName: "hand.thumbsup.fill")!)
         return textField
     }()
     private let passwordTextField: UITextField = {
@@ -28,30 +32,30 @@ class AuthViewController: UIViewController {
         textField.placeholder = "Enter you password"
         textField.setLeftIcon(UIImage.init(systemName: "lock.fill")!)
         textField.isSecureTextEntry = true
-        textField.borderStyle = .roundedRect
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 30
         return textField
     }()
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor(hex: "#2f358cff")
         button.setTitle("Login", for: .normal)
         button.tintColor = .white
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 30
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.5
         button.layer.shadowOffset = .zero
         button.layer.shadowRadius = 10
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
-//        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     private let forgotButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Forgot your password?", for: .normal)
-//        button.setTitleColor(.lightGray, for: .normal)
         button.tintColor = .black
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         button.layer.shadowColor = UIColor.black.cgColor
@@ -73,33 +77,37 @@ class AuthViewController: UIViewController {
     }()
     private let facebookButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .lightGray
+        button.backgroundColor = .blue
         button.setTitle("Facebook", for: .normal)
+        button.setImage(UIImage(named: "fb")?.withRenderingMode(.automatic), for: .normal)
         button.tintColor = .white
-        button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.layer.cornerRadius = 20
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.3
         button.layer.shadowOffset = .zero
         button.layer.shadowRadius = 10
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
-//        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(facebookButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     private let twitterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor(hex: "#2f358cff")
         button.setTitle("Twitter", for: .normal)
+        button.setImage(UIImage(named: "tw")?.withRenderingMode(.automatic), for: .normal)
         button.tintColor = .white
-        button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.layer.cornerRadius = 20
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.3
         button.layer.shadowOffset = .zero
         button.layer.shadowRadius = 10
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
-//        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(twitterButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -115,6 +123,7 @@ class AuthViewController: UIViewController {
         button.setTitle("Sing Up", for: .normal)
         button.tintColor = .blue
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        button.addTarget(self, action: #selector(footerSingUpButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -123,12 +132,16 @@ class AuthViewController: UIViewController {
     private var stackViewSocialNetworkButton = UIStackView()
     private var stackViewFooter = UIStackView()
     
+//MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setView()
         setupConstraint()
     }
+    
+//MARK: - Setup
+    
     private func setView() {
         setupGradient()
         stackViewTextField = UIStackView(arrangedSubviews: [loginTextField, passwordTextField],
@@ -151,8 +164,8 @@ class AuthViewController: UIViewController {
         view.addSubview(socialNetworkLabel)
         view.addSubview(stackViewSocialNetworkButton)
         view.addSubview(stackViewFooter)
-        
     }
+    
     private func setupGradient() {
         let color3 = UIColor.blue.cgColor
         let color4 = UIColor.white.cgColor
@@ -163,17 +176,36 @@ class AuthViewController: UIViewController {
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.5)
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
+
+//MARK: - Action
+    
+    @objc func loginButtonPressed() {
+        print("login button pressed")
+    }
     
     @objc func forgotButtonPressed() {
         print("forgot button pressed")
     }
+    
+    @objc func facebookButtonPressed() {
+        print("facebook button pressed")
+    }
+    
+    @objc func twitterButtonPressed() {
+        print("twitter button pressed")
+    }
+    
+    @objc func footerSingUpButtonPressed() {
+        print("footer SingUp button pressed")
+    }
 
 }
+
+//MARK: - Extension constraint
 
 extension AuthViewController {
     private func setupConstraint() {
         NSLayoutConstraint.activate([
-                
             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
 
@@ -181,11 +213,15 @@ extension AuthViewController {
             stackViewTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackViewTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             stackViewTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            loginTextField.heightAnchor.constraint(equalToConstant: 60),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 60),
+
             
             loginButton.topAnchor.constraint(equalTo: stackViewTextField.bottomAnchor, constant: 50),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            loginButton.heightAnchor.constraint(equalToConstant: 40),
+            loginButton.heightAnchor.constraint(equalToConstant: 60),
+            
             
             forgotButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             forgotButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
@@ -197,10 +233,11 @@ extension AuthViewController {
             stackViewSocialNetworkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             stackViewSocialNetworkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             stackViewSocialNetworkButton.bottomAnchor.constraint(equalTo: stackViewFooter.topAnchor, constant: -30),
+            facebookButton.heightAnchor.constraint(equalToConstant: 40),
+            twitterButton.heightAnchor.constraint(equalToConstant: 40),
             
             stackViewFooter.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackViewFooter.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -30),
-            
         ])
     }
 }
