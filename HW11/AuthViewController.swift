@@ -8,6 +8,8 @@
 import UIKit
 
 class AuthViewController: UIViewController {
+
+//MARK: - Outlets
     
     private let loginLabel: UILabel = {
         let label = UILabel()
@@ -47,7 +49,7 @@ class AuthViewController: UIViewController {
         button.layer.shadowRadius = 10
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
-//        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -87,7 +89,7 @@ class AuthViewController: UIViewController {
         button.layer.shadowRadius = 10
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
-//        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(facebookButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -105,7 +107,7 @@ class AuthViewController: UIViewController {
         button.layer.shadowRadius = 10
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
-//        button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(twitterButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -121,6 +123,7 @@ class AuthViewController: UIViewController {
         button.setTitle("Sing Up", for: .normal)
         button.tintColor = .blue
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        button.addTarget(self, action: #selector(footerSingUpButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -129,12 +132,16 @@ class AuthViewController: UIViewController {
     private var stackViewSocialNetworkButton = UIStackView()
     private var stackViewFooter = UIStackView()
     
+//MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setView()
         setupConstraint()
     }
+    
+//MARK: - Setup
+    
     private func setView() {
         setupGradient()
         stackViewTextField = UIStackView(arrangedSubviews: [loginTextField, passwordTextField],
@@ -157,8 +164,8 @@ class AuthViewController: UIViewController {
         view.addSubview(socialNetworkLabel)
         view.addSubview(stackViewSocialNetworkButton)
         view.addSubview(stackViewFooter)
-        
     }
+    
     private func setupGradient() {
         let color3 = UIColor.blue.cgColor
         let color4 = UIColor.white.cgColor
@@ -169,17 +176,36 @@ class AuthViewController: UIViewController {
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.5)
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
+
+//MARK: - Action
+    
+    @objc func loginButtonPressed() {
+        print("login button pressed")
+    }
     
     @objc func forgotButtonPressed() {
         print("forgot button pressed")
     }
+    
+    @objc func facebookButtonPressed() {
+        print("facebook button pressed")
+    }
+    
+    @objc func twitterButtonPressed() {
+        print("twitter button pressed")
+    }
+    
+    @objc func footerSingUpButtonPressed() {
+        print("footer SingUp button pressed")
+    }
 
 }
+
+//MARK: - Extension constraint
 
 extension AuthViewController {
     private func setupConstraint() {
         NSLayoutConstraint.activate([
-                
             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
 
@@ -212,7 +238,6 @@ extension AuthViewController {
             
             stackViewFooter.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackViewFooter.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -30),
-            
         ])
     }
 }
