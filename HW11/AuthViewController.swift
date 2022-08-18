@@ -9,16 +9,6 @@ import UIKit
 
 class AuthViewController: UIViewController {
     
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    private let backgroundView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
     private let loginLabel: UILabel = {
         let label = UILabel()
         label.text = "Login"
@@ -42,10 +32,11 @@ class AuthViewController: UIViewController {
         return textField
     }()
     private let loginButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.backgroundColor = .blue
         button.setTitle("Login", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.tintColor = .white
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.5
@@ -58,9 +49,11 @@ class AuthViewController: UIViewController {
         return button
     }()
     private let forgotButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Forgot your password", for: .normal)
-        button.setTitleColor(.lightGray, for: .normal)
+        let button = UIButton(type: .system)
+        button.setTitle("Forgot your password?", for: .normal)
+//        button.setTitleColor(.lightGray, for: .normal)
+        button.tintColor = .black
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
         button.layer.shadowOffset = .zero
@@ -79,7 +72,7 @@ class AuthViewController: UIViewController {
         return label
     }()
     private let facebookButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.backgroundColor = .lightGray
         button.setTitle("Facebook", for: .normal)
         button.tintColor = .white
@@ -95,7 +88,7 @@ class AuthViewController: UIViewController {
         return button
     }()
     private let twitterButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.backgroundColor = .blue
         button.setTitle("Twitter", for: .normal)
         button.tintColor = .white
@@ -118,10 +111,10 @@ class AuthViewController: UIViewController {
         return label
     }()
     private let footerSingUpButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Sing Up", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        button.setTitleColor(.gray, for: .highlighted)
+        button.tintColor = .blue
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -150,15 +143,14 @@ class AuthViewController: UIViewController {
                                       axis: .horizontal,
                                       spasing: 5,
                                       distribution: .equalCentering)
-        view.addSubview(scrollView)
-        scrollView.addSubview(backgroundView)
-        backgroundView.addSubview(loginLabel)
-        backgroundView.addSubview(stackViewTextField)
-        backgroundView.addSubview(loginButton)
-        backgroundView.addSubview(forgotButton)
-        backgroundView.addSubview(socialNetworkLabel)
-        backgroundView.addSubview(stackViewSocialNetworkButton)
-        backgroundView.addSubview(stackViewFooter)
+
+        view.addSubview(loginLabel)
+        view.addSubview(stackViewTextField)
+        view.addSubview(loginButton)
+        view.addSubview(forgotButton)
+        view.addSubview(socialNetworkLabel)
+        view.addSubview(stackViewSocialNetworkButton)
+        view.addSubview(stackViewFooter)
         
     }
     private func setupGradient() {
@@ -181,44 +173,33 @@ class AuthViewController: UIViewController {
 extension AuthViewController {
     private func setupConstraint() {
         NSLayoutConstraint.activate([
-            
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            
-            backgroundView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            backgroundView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-            backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor),
                 
-            loginLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            loginLabel.topAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.topAnchor, constant: 70),
+            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
 
             stackViewTextField.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 50),
-            stackViewTextField.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            stackViewTextField.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
-            stackViewTextField.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -20),
+            stackViewTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackViewTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stackViewTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             loginButton.topAnchor.constraint(equalTo: stackViewTextField.bottomAnchor, constant: 50),
-            loginButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
-            loginButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -20),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             loginButton.heightAnchor.constraint(equalToConstant: 40),
             
-            forgotButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            forgotButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             forgotButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
             
-            socialNetworkLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            socialNetworkLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             socialNetworkLabel.bottomAnchor.constraint(equalTo: stackViewSocialNetworkButton.topAnchor, constant: -30),
             
-            stackViewSocialNetworkButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            stackViewSocialNetworkButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
-            stackViewSocialNetworkButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -20),
+            stackViewSocialNetworkButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackViewSocialNetworkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stackViewSocialNetworkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             stackViewSocialNetworkButton.bottomAnchor.constraint(equalTo: stackViewFooter.topAnchor, constant: -30),
             
-            stackViewFooter.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            stackViewFooter.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor,constant: -30),
-//            footerSingUpButton.heightAnchor.constraint(equalToConstant: 50)
+            stackViewFooter.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackViewFooter.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -30),
             
         ])
     }
