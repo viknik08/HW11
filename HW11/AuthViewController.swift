@@ -127,10 +127,23 @@ class AuthViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    private let leftLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    private let rightLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     private var stackViewTextField = UIStackView()
     private var stackViewSocialNetworkButton = UIStackView()
     private var stackViewFooter = UIStackView()
+    private var stackViewSocialLabelView = UIStackView()
     
 //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -162,6 +175,8 @@ class AuthViewController: UIViewController {
         view.addSubview(loginButton)
         view.addSubview(forgotButton)
         view.addSubview(socialNetworkLabel)
+        view.addSubview(leftLineView)
+        view.addSubview(rightLineView)
         view.addSubview(stackViewSocialNetworkButton)
         view.addSubview(stackViewFooter)
     }
@@ -216,12 +231,10 @@ extension AuthViewController {
             loginTextField.heightAnchor.constraint(equalToConstant: 60),
             passwordTextField.heightAnchor.constraint(equalToConstant: 60),
 
-            
             loginButton.topAnchor.constraint(equalTo: stackViewTextField.bottomAnchor, constant: 50),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             loginButton.heightAnchor.constraint(equalToConstant: 60),
-            
             
             forgotButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             forgotButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
@@ -229,13 +242,22 @@ extension AuthViewController {
             socialNetworkLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             socialNetworkLabel.bottomAnchor.constraint(equalTo: stackViewSocialNetworkButton.topAnchor, constant: -30),
             
+            leftLineView.trailingAnchor.constraint(equalTo: socialNetworkLabel.leadingAnchor, constant: -10),
+            rightLineView.leadingAnchor.constraint(equalTo: socialNetworkLabel.trailingAnchor, constant: 10),
+            leftLineView.centerYAnchor.constraint(equalTo: socialNetworkLabel.centerYAnchor),
+            rightLineView.centerYAnchor.constraint(equalTo: socialNetworkLabel.centerYAnchor),
+            rightLineView.heightAnchor.constraint(equalToConstant: 1),
+            leftLineView.heightAnchor.constraint(equalToConstant: 1),
+            rightLineView.widthAnchor.constraint(equalToConstant: 100),
+            leftLineView.widthAnchor.constraint(equalToConstant: 100),
+            
             stackViewSocialNetworkButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackViewSocialNetworkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             stackViewSocialNetworkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             stackViewSocialNetworkButton.bottomAnchor.constraint(equalTo: stackViewFooter.topAnchor, constant: -30),
             facebookButton.heightAnchor.constraint(equalToConstant: 40),
             twitterButton.heightAnchor.constraint(equalToConstant: 40),
-            
+           
             stackViewFooter.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackViewFooter.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -30),
         ])
